@@ -17,10 +17,26 @@ fun fishFood (day : String) : String {
     }
 }
 
+fun isTooHot(temperature: Int) = temperature > 30
+
+fun isDirty(dirty : Int) = dirty > 30
+
+fun isSunday(day : String) = day == "Sunday"
+
+fun shouldChangeWater (day : String, temperature: Int = 22, dirty : Int = 20) : Boolean {
+    return when {
+        isTooHot(temperature) -> true
+        isDirty(dirty) -> true
+        isSunday(day) -> true
+        else -> false
+    }
+}
+
 fun feedTheFish() {
     val day = randomDay()
     val food = fishFood(day)
     println ("Today is $day and the fish eat $food")
+    println ("Change water : ${shouldChangeWater(day)}")
 }
 
 fun swim(speed: String = "fast") {
@@ -28,5 +44,36 @@ fun swim(speed: String = "fast") {
 }
 
 fun main(args: Array<String>) {
+    /*
+    swim()   // uses default speed
+    swim("slow")   // positional argument
+    swim(speed="turtle-like")   // named parameter
     feedTheFish()
+    */
+
+    val decorations = listOf ("rock", "pagoda", "plastic plant", "alligator", "flowerpot")
+
+    val lazyMap = decorations.asSequence().map {
+        println("access: $it")
+        it
+    }
+    println("lazy: $lazyMap")
+    println("-----")
+    println("first: ${lazyMap.first()}")
+    println("-----")
+    println("all: ${lazyMap.toList()}")
+
+    val lazyMap2 = decorations.asSequence().filter {it[0] == 'p'}.map {
+        println("access: $it")
+        it
+    }
+    println("-----")
+    println("filtered: ${lazyMap2.toList()}")
+
+    val mysports = listOf("basketball", "fishing", "running")
+    val myplayers = listOf("LeBron James", "Ernest Hemingway", "Usain Bolt")
+    val mycities = listOf("Los Angeles", "Chicago", "Jamaica")
+    val mylist = listOf(mysports, myplayers, mycities)     // list of lists
+    println("-----")
+    println("Flat: ${mylist.flatten()}")
 }
