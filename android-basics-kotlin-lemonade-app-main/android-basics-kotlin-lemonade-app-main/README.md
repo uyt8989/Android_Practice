@@ -25,5 +25,5 @@ Tips
 
 - Use the provided tests to ensure your app is running as expected
 - DO NOT ALTER THE PROVIDED TESTS
-- 
+
 ![image](https://user-images.githubusercontent.com/87462266/163550071-6844ace5-b34c-450c-80b4-76594544e1f8.png)
